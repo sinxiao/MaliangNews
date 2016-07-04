@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView android:layout_width="fill_parent" android:gravity="center"
+    android:layout_height="wrap_content" android:id="@+id/txtTip" android:visibility="gone" />
+
+    <cn.com.dc.app.client.CustomListView
+        android:id="@+id/lstNews"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="#00000000"
+        android:persistentDrawingCache="animation|scrolling" >
+    </cn.com.dc.app.client.CustomListView>
+
+</LinearLayout>

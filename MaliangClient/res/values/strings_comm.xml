@@ -1,0 +1,7 @@
+<resources>
+    <string name="error">error</string>
+     <string name="ok">ok</string>
+      <string name="cancel">cancel</string>
+    <string name="controltimeout">controltimeout</string>
+    
+</resources>

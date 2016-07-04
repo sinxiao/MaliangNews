@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/head" />
+
+    <LinearLayout
+        android:id="@+id/layout_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="邮箱/手机号" />
+
+        <EditText
+            android:id="@+id/edtPwd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="密码"
+            android:inputType="textPassword" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="登录" />
+
+            <Button
+                android:id="@+id/btnShowReg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="显示注册" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/layout_reg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/edtregName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="邮箱/手机号" />
+
+            <EditText
+                android:id="@+id/edtregPwd"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="密码"
+                android:inputType="textPassword" />
+
+            <Switch
+                android:id="@+id/swhMore"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="补充信息"
+                android:textOff="忽略"
+                android:textOn="显示更多" />
+
+            <LinearLayout
+                android:id="@+id/layoutMore"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/edtregBirthYM"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="出生年月" />
+
+                <EditText
+                    android:id="@+id/edtregGender"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="性别" />
+
+                <EditText
+                    android:id="@+id/edtregMobile"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="手机号" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btnNowReg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="注册" />
+
+                <Button
+                    android:id="@+id/btnShowLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="显示登陆" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
