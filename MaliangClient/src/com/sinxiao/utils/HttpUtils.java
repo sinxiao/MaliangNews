@@ -78,14 +78,19 @@ public class HttpUtils {
 	private static Request formateFormBody(String url,
 			HashMap<String, String> values) {
 		Set<String> keyset = values.keySet();
-
 		Builder formBuilder = new FormBody.Builder();
-		for (String key : keyset) {
-			formBuilder.addEncoded(key, values.get(key));
-			if (Utils.debug) {
-				Log.e(TAG, "key >> " + key + " value >>　" + values.get(key));
-			}
-
+		Iterator<String> iterator = keyset.iterator();
+		String key;
+		if(keyset.size()>1){
+			do {
+				key = iterator.next();
+				if(key!=null){
+					formBuilder.addEncoded(key, values.get(key)==null?"":values.get(key));
+					if (Utils.debug) {
+						Log.e(TAG, "key >> " + key + " value >>　" + values.get(key));
+					}	
+				}
+			} while (iterator.hasNext());
 		}
 		FormBody body = formBuilder.build();
 		Request request = new Request.Builder().url(url).post(body).build();
@@ -106,7 +111,6 @@ public class HttpUtils {
 	public static String httpPostKeyValue(String url,
 			HashMap<String, String> values) throws Exception {
 		if (Utils.debug) {
-
 			Log.e(TAG, "post url " + url);
 		}
 		Request request = formateFormBody(url, values);
@@ -200,9 +204,11 @@ public class HttpUtils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw e;
+		}finally{
+			return data;
 		}
 
-		return null;
+//		return null;
 	}
 
 	/**

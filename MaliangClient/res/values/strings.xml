@@ -40,6 +40,17 @@
     <string name="delete_image">删除图片</string>
     <string name="sure">确认</string>
     <string name="cancle">取消</string>
-    
-      
+    <string name="belogin">正在登陆...</string>
+    <string name="bereg">正在注册...</string>
+    <string name="tip">提示</string>
+    <string name="login">登陆</string>
+    <string name="userinfor">用户信息</string>
+    <string name="golden">定海神针</string>
+    <string name="about">关于</string>
+      <string name="message">本软件由Quark工作室制作发布.本软件为免费共享软件，供用户免费获取使用。使用过程中如产生的流量费用由运营商收取。本软件使用资源皆来自于互联网，欢迎反馈信息与投稿，请联系管理员。mailto:deonchen@protonmail.com</string>
+    <string name="version">Version</string>
+    <string name="loginview">用户登录</string>
+    <string name="regview">用户注册</string>
+    <string name="emailinuse">Email已使用</string>
+    <string name="mobileinuse">手机号已使用</string>
 </resources>

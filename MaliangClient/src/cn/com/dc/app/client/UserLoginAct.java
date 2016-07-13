@@ -1,5 +1,6 @@
 package cn.com.dc.app.client;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -7,9 +8,11 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import cn.com.dc.app.client.bean.User;
 import cn.com.dc.app.client.mvp.IUserView;
 import cn.com.dc.app.client.mvp.UserPressent;
+import cn.com.dc.app.client.util.Utils;
 
 /**
  * 
@@ -42,14 +45,25 @@ public class UserLoginAct extends BaseActivity implements IUserView {
 	private View layout_login, layout_reg, layoutMore;
 	private Button btnLogin, btnNowReg, btnShowReg, btnShowLogin;
 	private UserPressent userpressent;
+	private Button btnLeft, btnRight;
+	private TextView txtInfor;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.login_reg);
+		btnLeft = (Button) findViewById(R.id.btnLeft);
+		btnLeft.setVisibility(View.GONE);
+		btnRight = (Button) findViewById(R.id.btnRight);
+		btnRight.setVisibility(View.GONE);
+		txtInfor = (TextView) findViewById(R.id.txtInfor);
+		txtInfor.setTextColor(Color.WHITE);
 
 		style = getIntent().getIntExtra("style", STYLE_ACT);
 		for_waht = getIntent().getIntExtra("for_waht", FOR_LOGIN);
+
+		layout_login = findViewById(R.id.layout_login);
+		layout_reg = findViewById(R.id.layout_reg);
 
 		if (for_waht == FOR_LOGIN) {
 			initLogin();
@@ -58,52 +72,102 @@ public class UserLoginAct extends BaseActivity implements IUserView {
 		}
 
 		userpressent = new UserPressent(this);
+
 	}
 
 	public void initLogin() {
+		txtInfor.setText(R.string.loginview);
 		edtPwd = (EditText) findViewById(R.id.edtPwd);
 		edtName = (EditText) findViewById(R.id.edtName);
 		btnLogin = (Button) findViewById(R.id.btnLogin);
 		btnShowReg = (Button) findViewById(R.id.btnShowReg);
+		btnShowReg.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				showReg();
+			}
+		});
 		layout_login.setVisibility(View.VISIBLE);
 		layout_reg.setVisibility(View.GONE);
+		btnLogin.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				userpressent.login(edtName.getText().toString(), edtPwd
+						.getText().toString());
+			}
+		});
+		if(Utils.debug){
+			edtName.setText("13856258699");
+			edtPwd.setText("123456");
+		}
 	}
 
 	public void initReg() {
-		
+		txtInfor.setText(R.string.regview);
 		edtregName = (EditText) findViewById(R.id.edtregName);
+		edtregName.setHint("邮箱地址");
 		edtregPwd = (EditText) findViewById(R.id.edtregPwd);
 		edtregBirthYM = (EditText) findViewById(R.id.edtregBirthYM);
 		edtregGender = (EditText) findViewById(R.id.edtregGender);
 		edtregMobile = (EditText) findViewById(R.id.edtregMobile);
-		
+
 		btnShowLogin = (Button) findViewById(R.id.btnShowLogin);
+		btnShowLogin.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showLogin();
+			}
+		});
+		
 		btnNowReg = (Button) findViewById(R.id.btnNowReg);
-		
+		btnNowReg.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				User user = new User();
+				user.setEmail(edtregName.getText().toString());
+				user.setBirthYM(edtregBirthYM.getText().toString());
+				user.setFace("");
+				user.setMobile(edtregMobile.getText().toString());
+				user.setPwd(edtregPwd.getText().toString());
+				user.setSex((edtregGender.getText().toString()));
+				userpressent.reg(user);
+			}
+		});
+		layoutMore = findViewById(R.id.layoutMore);
+
 		swhMore = (Switch) findViewById(R.id.swhMore);
-		
 		swhMore.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if(isChecked){
+
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				if (isChecked) {
 					layoutMore.setVisibility(View.VISIBLE);
-				}else{
+				} else {
 					layoutMore.setVisibility(View.GONE);
 				}
 			}
 		});
-		btnNowReg.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				
-			}
-		});
+		swhMore.setChecked(false);
+		layoutMore.setVisibility(View.GONE);
+		// btnNowReg.setOnClickListener(new View.OnClickListener() {
+		//
+		// public void onClick(View v) {
+		//
+		// }
+		// });
 		layout_login.setVisibility(View.GONE);
 		layout_reg.setVisibility(View.VISIBLE);
+		if(Utils.debug){
+			edtregName.setText("aaaa@bbb.com");
+			edtregPwd.setText("111222");
+			edtregBirthYM.setText("1991-02");
+			edtregGender.setText("1");
+			edtregMobile.setText("18687667876");
+		}
 	}
 
-	public void regNow()
-	{
+	public void regNow() {
 		User user = new User();
 		user.setUname(edtregName.getText().toString().trim());
 		user.setMobile(edtregMobile.getText().toString().trim());
@@ -112,7 +176,7 @@ public class UserLoginAct extends BaseActivity implements IUserView {
 		user.setBirthYM(edtregBirthYM.getText().toString());
 		userpressent.reg(user);
 	}
-	
+
 	public void login(View v) {
 		userpressent.login(edtName.getText().toString(), edtPwd.getText()
 				.toString());
@@ -124,6 +188,7 @@ public class UserLoginAct extends BaseActivity implements IUserView {
 
 	@Override
 	public void showLogin() {
+		initLogin();
 		for_waht = FOR_LOGIN;
 		// 显示登陆界面
 		layout_reg.setVisibility(View.GONE);
@@ -140,6 +205,7 @@ public class UserLoginAct extends BaseActivity implements IUserView {
 
 	public void showReg() {
 		for_waht = FOR_REG;
+		initReg();
 		// 显示登陆界面
 		layout_reg.setVisibility(View.VISIBLE);
 		layout_login.setVisibility(View.GONE);

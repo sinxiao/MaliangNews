@@ -28,7 +28,8 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:gravity="center"
+                        android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/btnLogin"
@@ -39,6 +40,7 @@
             <Button
                 android:id="@+id/btnShowReg"
                 android:layout_width="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:layout_height="wrap_content"
                 android:text="显示注册" />
         </LinearLayout>
@@ -104,6 +106,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal" >
 
                 <Button
@@ -115,6 +118,7 @@
                 <Button
                     android:id="@+id/btnShowLogin"
                     android:layout_width="wrap_content"
+                    android:layout_marginLeft="50dp"
                     android:layout_height="wrap_content"
                     android:text="显示登陆" />
             </LinearLayout>

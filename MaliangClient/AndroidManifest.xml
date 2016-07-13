@@ -85,6 +85,8 @@
 
         <activity android:name="TabAskItemActivity" >
         </activity>
+        <activity android:name="UserLoginAct" >
+        </activity>
     </application>
 
 </manifest>

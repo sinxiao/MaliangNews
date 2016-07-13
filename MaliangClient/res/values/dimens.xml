@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+      <dimen name="slidingmenu_offset">80dp</dimen>
+    <dimen name="list_padding">16dp</dimen>
+    <dimen name="shadow_width">20dp</dimen>
+
+    <integer name="num_cols">1</integer>
     <!-- sina weibo sdk -->
     <dimen name="dialog_left_margin">10dp</dimen>
 	<dimen name="dialog_top_margin">30dp</dimen>

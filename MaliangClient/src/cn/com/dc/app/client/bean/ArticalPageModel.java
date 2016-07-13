@@ -5,6 +5,17 @@ import java.util.List;
 import org.litepal.crud.DataSupport;
 
 public class ArticalPageModel extends DataSupport {
+	
+	private String Error ;
+	
+	public String getError() {
+		return Error;
+	}
+
+	public void setError(String error) {
+		Error = error;
+	}
+
 	private int ret;
 
 	public int getRet() {

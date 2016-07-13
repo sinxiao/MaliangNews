@@ -15,8 +15,9 @@ import com.sinxiao.utils.HttpUtils;
  * 
  */
 public class OperatManager {
-//	public static final String IP = "http://23.251.49.20:8080";
-	 public static final String IP = "http://192.168.0.100:8080/DTCMS";
+//	 public static final String IP = "http://23.251.49.20:8080";
+//	 public static final String IP = "http://192.168.0.100:8080/DTCMS";
+	public static final String IP = "http://192.168.113.102:8080/DTCMS";
 	private static final String URL = IP + "/bridge/ProcessAction.aspx";
 
 	private Hashtable<String, String> response = new Hashtable<String, String>();
@@ -125,18 +126,23 @@ public class OperatManager {
 	public String login(String uname,String pwd)throws Exception
 	{
 		HashMap<String, String> mp = new HashMap<String, String>();
-		mp.put("methodId", "1-5");
-		mp.put("uname", uname);
+		mp.put("methodId", "3-1");
+		mp.put("name", uname);
 		mp.put("pwd", pwd);
 		return HttpUtils.httpPostKeyValue(URL, mp);
 	}
 	
-	public String reg(String uname,String pwd,String email,String mobile)throws Exception
+	public String reg(String uname,String pwd,String email,String mobile,String gendar,String birthYM)throws Exception
 	{
 		HashMap<String, String> mp = new HashMap<String, String>();
-		mp.put("methodId", "1-5");
-		mp.put("uname", uname);
+		mp.put("methodId", "3-2");
+		mp.put("name", uname);
+		mp.put("birthYM", birthYM);
 		mp.put("pwd", pwd);
+		mp.put("email", email);
+		mp.put("mobile", mobile);
+		mp.put("sex", gendar);
+		
 		return HttpUtils.httpPostKeyValue(URL, mp);
 	}
 	

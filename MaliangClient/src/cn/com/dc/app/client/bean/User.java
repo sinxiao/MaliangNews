@@ -1,7 +1,31 @@
 package cn.com.dc.app.client.bean;
 
-public class User {
-	private String uid,uname,email,face,mobile,pwd,birthYM;
+import org.litepal.crud.DataSupport;
+
+public class User extends DataSupport{
+	
+	private boolean isOwner;
+
+	public boolean isOwner() {
+		return isOwner;
+	}
+
+	public void setOwner(boolean isOwner) {
+		this.isOwner = isOwner;
+	}
+
+	private String sex = "";
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	private String uid = "", uname = "", email = "", face = "", mobile = "",
+			pwd = "", birthYM = "";
 
 	public String getPwd() {
 		return pwd;
@@ -25,6 +49,7 @@ public class User {
 
 	/**
 	 * 1为男 0 为女 2为未知
+	 * 
 	 * @param grade
 	 */
 	public void setGrade(int grade) {
@@ -70,5 +95,6 @@ public class User {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
+
 	private int grade;
 }

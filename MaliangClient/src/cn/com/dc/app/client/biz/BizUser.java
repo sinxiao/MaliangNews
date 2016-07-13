@@ -4,13 +4,21 @@ import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
+import android.os.Handler;
+import android.os.Looper;
 import cn.com.dc.app.client.bean.ArticalPageModel;
 import cn.com.dc.app.client.bean.User;
 
 import com.alibaba.fastjson.JSON;
+import com.sinxiao.mvp.bean.ErrorInfor;
 import com.sinxiao.mvp.bean.Rsponse2BeanCallBack;
 
 public class BizUser extends CommonBiz implements IBizUser {
+	private Handler mHandler = null;
+
+	public BizUser() {
+		mHandler = new Handler(Looper.getMainLooper());
+	}
 
 	private OperatManager operate = new OperatManager();
 
@@ -25,12 +33,24 @@ public class BizUser extends CommonBiz implements IBizUser {
 						String data = null;
 						try {
 							data = operate.login(name, pwd);
-							// 解析获得的xml数据
-							ArticalPageModel pageModel = JSON.parseObject(data,
-									ArticalPageModel.class);
+							if (data == null) {
+								ErrorInfor infor = new ErrorInfor();
+								infor.setConnected(false);
+								rsp.onFailed(infor);
+							} else {
+								// 解析获得的xml数据
+								final ArticalPageModel pageModel = JSON
+										.parseObject(data,
+												ArticalPageModel.class);
+								mHandler.post(new Runnable() {
 
-							rsp.onGetBeans(pageModel);
+									@Override
+									public void run() {
+										rsp.onGetBeans(pageModel);
+									}
+								});
 
+							}
 							rsp.OnResponse(data);
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
@@ -57,13 +77,28 @@ public class BizUser extends CommonBiz implements IBizUser {
 
 						String data = null;
 						try {
+							
 							data = operate.reg(user.getUname(), user.getPwd(),
-									user.getEmail(), user.getMobile());
-							// 解析获得的xml数据
-							ArticalPageModel pageModel = JSON.parseObject(data,
-									ArticalPageModel.class);
+									user.getEmail(), user.getMobile(),
+									user.getSex(), user.getBirthYM());
+							
+							if (data == null) {
+								ErrorInfor infor = new ErrorInfor();
+								infor.setConnected(false);
+								rsp.onFailed(infor);
+							} else {
+								// 解析获得的xml数据
+								final ArticalPageModel pageModel = JSON
+										.parseObject(data,
+												ArticalPageModel.class);
+								mHandler.post(new Runnable() {
 
-							rsp.onGetBeans(pageModel);
+									@Override
+									public void run() {
+										rsp.onGetBeans(pageModel);
+									}
+								});
+							}
 
 							rsp.OnResponse(data);
 						} catch (Exception e) {
@@ -92,7 +127,8 @@ public class BizUser extends CommonBiz implements IBizUser {
 						String data = null;
 						try {
 							data = operate.reg(user.getUname(), user.getPwd(),
-									user.getEmail(), user.getMobile());
+									user.getEmail(), user.getMobile(),
+									user.getSex(), user.getBirthYM());
 							// 解析获得的xml数据
 							ArticalPageModel pageModel = JSON.parseObject(data,
 									ArticalPageModel.class);
